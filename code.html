@@ -1,0 +1,1095 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Piyush Ghosh — Journalist & Storyteller</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Source+Serif+4:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+  *,*::before,*::after{margin:0;padding:0;box-sizing:border-box}
+
+  :root {
+    --bg: #f5f0e8;
+    --bg-alt: #ebe5d8;
+    --ink: #1a1714;
+    --ink-soft: #3d3830;
+    --ink-muted: #8a8278;
+    --accent: #d94f30;
+    --accent-hover: #c04025;
+    --accent-light: #f4ddd7;
+    --blue: #2b5ea7;
+    --border: #1a1714;
+    --border-light: #cfc8ba;
+    --white: #fffcf5;
+  }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Source Serif 4', serif;
+    font-weight: 300;
+    line-height: 1.75;
+    overflow-x: hidden;
+    cursor: default;
+  }
+
+  body::after {
+    content: '';
+    position: fixed; inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+    opacity: 0.025;
+    pointer-events: none;
+    z-index: 9999;
+  }
+
+  ::selection { background: var(--accent); color: var(--white); }
+
+  a { color: var(--accent); text-decoration: none; font-weight: 600; transition: color 0.2s; }
+  a:hover { color: var(--accent-hover); }
+
+  /* ---- NAV ---- */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0;
+    z-index: 1000;
+    display: flex; justify-content: space-between; align-items: center;
+    padding: 1rem 2.5rem;
+    background: var(--bg);
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .nav-logo {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.3rem;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+  }
+
+  .nav-logo span {
+    display: inline-block;
+    background: var(--accent);
+    color: var(--white);
+    padding: 0 0.3rem;
+    margin-left: 0.1rem;
+    transform: rotate(-2deg);
+  }
+
+  .nav-links {
+    display: flex; gap: 0.5rem;
+    list-style: none;
+  }
+
+  .nav-links a {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: var(--ink);
+    padding: 0.4rem 0.8rem;
+    border: 2px solid transparent;
+    transition: all 0.2s ease;
+    font-weight: 400;
+  }
+
+  .nav-links a:hover {
+    border-color: var(--ink);
+    color: var(--accent);
+  }
+
+  /* ---- HERO ---- */
+  .hero {
+    margin-top: 60px;
+    min-height: calc(100vh - 60px);
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .hero-left {
+    padding: 5rem 3rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border-right: 3px solid var(--ink);
+    position: relative;
+  }
+
+  .hero-left::before {
+    content: '001';
+    position: absolute;
+    top: 2rem; left: 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .hero-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    margin-bottom: 1.5rem;
+    opacity: 0;
+    animation: slideIn 0.6s ease 0.2s forwards;
+  }
+
+  .hero-name {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(3.5rem, 7vw, 6.5rem);
+    font-weight: 800;
+    line-height: 0.9;
+    letter-spacing: -0.04em;
+    text-transform: uppercase;
+    margin-bottom: 2rem;
+    opacity: 0;
+    animation: slideIn 0.6s ease 0.35s forwards;
+  }
+
+  .hero-name .first { display: block; }
+  .hero-name .last {
+    display: block;
+    color: var(--accent);
+    -webkit-text-stroke: 2px var(--accent);
+    -webkit-text-fill-color: transparent;
+  }
+
+  .hero-right {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    padding: 5rem 3rem 3rem;
+    position: relative;
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .hero-right::before {
+    content: '002';
+    position: absolute;
+    top: 2rem; right: 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    letter-spacing: 0.1em;
+  }
+
+  .hero-objective {
+    font-family: 'Source Serif 4', serif;
+    font-size: 1.15rem;
+    font-weight: 300;
+    font-style: italic;
+    line-height: 1.8;
+    color: var(--border-light);
+    max-width: 440px;
+    opacity: 0;
+    animation: slideIn 0.6s ease 0.5s forwards;
+  }
+
+  .hero-contact-bar {
+    display: flex; flex-wrap: wrap; gap: 2rem;
+    padding-top: 2rem;
+    border-top: 1px solid #3d3830;
+    opacity: 0;
+    animation: slideIn 0.6s ease 0.65s forwards;
+  }
+
+  .hero-contact-item {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.65rem;
+    text-transform: uppercase;
+    letter-spacing: 0.08em;
+    color: var(--ink-muted);
+  }
+
+  .hero-contact-item strong {
+    display: block;
+    color: var(--border-light);
+    font-weight: 400;
+    margin-top: 0.2rem;
+    font-size: 0.75rem;
+  }
+
+  /* ---- MARQUEE ---- */
+  .marquee-wrap {
+    overflow: hidden;
+    border-bottom: 3px solid var(--ink);
+    background: var(--accent);
+    padding: 0.7rem 0;
+  }
+
+  .marquee-track {
+    display: flex;
+    gap: 3rem;
+    animation: marquee 20s linear infinite;
+    width: max-content;
+  }
+
+  .marquee-item {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 0.8rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--white);
+    white-space: nowrap;
+    display: flex; align-items: center; gap: 1rem;
+  }
+
+  .marquee-item::after {
+    content: '★';
+    font-size: 0.6rem;
+  }
+
+  @keyframes marquee {
+    from { transform: translateX(0); }
+    to   { transform: translateX(-50%); }
+  }
+
+  /* ---- SECTIONS ---- */
+  section {
+    border-bottom: 3px solid var(--ink);
+  }
+
+  .section-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 5rem 3rem;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: flex-start;
+    gap: 2rem;
+    margin-bottom: 3rem;
+  }
+
+  .section-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 3.5rem;
+    line-height: 1;
+    color: var(--border-light);
+    flex-shrink: 0;
+    min-width: 80px;
+  }
+
+  .section-title {
+    font-family: 'Syne', sans-serif;
+    font-size: clamp(1.8rem, 3.5vw, 2.8rem);
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+  }
+
+  .section-title em {
+    font-style: italic;
+    font-family: 'Source Serif 4', serif;
+    font-weight: 300;
+    text-transform: none;
+    color: var(--accent);
+  }
+
+  /* ---- EDUCATION ---- */
+  .edu-list {
+    display: grid;
+    gap: 0;
+  }
+
+  .edu-row {
+    display: grid;
+    grid-template-columns: 100px 1fr 1fr 80px;
+    align-items: center;
+    padding: 1.5rem 0;
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+    gap: 1.5rem;
+  }
+
+  .edu-row:first-child { border-top: 1px solid var(--border-light); }
+
+  .edu-row:hover {
+    background: var(--accent-light);
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  .edu-dot {
+    width: 40px; height: 40px;
+    border: 3px solid var(--ink);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    font-weight: 700;
+  }
+
+  .edu-degree {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+  }
+
+  .edu-school {
+    font-size: 0.85rem;
+    color: var(--ink-soft);
+  }
+
+  .edu-year {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    text-align: right;
+    color: var(--ink-muted);
+  }
+
+  /* ---- EXPERIENCE ---- */
+  .exp-block {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    gap: 0;
+    border: 3px solid var(--ink);
+  }
+
+  .exp-sidebar {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 2.5rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .exp-role-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    color: var(--ink-muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .exp-role {
+    font-family: 'Syne', sans-serif;
+    font-size: 1.4rem;
+    font-weight: 700;
+    text-transform: uppercase;
+    line-height: 1.2;
+  }
+
+  .exp-company {
+    font-size: 0.9rem;
+    color: var(--border-light);
+    margin-top: 1rem;
+  }
+
+  .exp-date-block {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    margin-top: auto;
+    padding-top: 2rem;
+  }
+
+  .exp-content {
+    padding: 2.5rem;
+  }
+
+  .exp-list {
+    list-style: none;
+    display: grid;
+    gap: 1rem;
+  }
+
+  .exp-list li {
+    font-size: 0.95rem;
+    color: var(--ink-soft);
+    padding-left: 2rem;
+    position: relative;
+  }
+
+  .exp-list li::before {
+    content: '';
+    position: absolute;
+    left: 0; top: 0.6rem;
+    width: 10px; height: 10px;
+    border: 2px solid var(--accent);
+    border-radius: 50%;
+  }
+
+  /* ---- SKILLS ---- */
+  .skills-wrap {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 0;
+  }
+
+  .skill-cell {
+    padding: 2rem;
+    border: 1px solid var(--border-light);
+    margin: -0.5px;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .skill-cell::after {
+    content: '';
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 100%; height: 0;
+    background: var(--ink);
+    transition: height 0.3s ease;
+    z-index: 0;
+  }
+
+  .skill-cell:hover::after { height: 100%; }
+
+  .skill-cell:hover .skill-text,
+  .skill-cell:hover .skill-id {
+    color: var(--bg);
+    position: relative; z-index: 1;
+  }
+
+  .skill-id {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 2rem;
+    color: var(--border-light);
+    margin-bottom: 0.5rem;
+    transition: color 0.3s ease;
+  }
+
+  .skill-text {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: -0.01em;
+    line-height: 1.3;
+    color: var(--ink);
+    transition: color 0.3s ease;
+    position: relative; z-index: 1;
+  }
+
+  /* ---- PROJECTS ---- */
+  .projects-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .project-card {
+    border: 3px solid var(--ink);
+    padding: 0;
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+  }
+
+  .project-card:hover {
+    transform: translate(-4px, -4px);
+    box-shadow: 8px 8px 0 var(--ink);
+  }
+
+  .project-card:first-child {
+    grid-column: 1 / -1;
+  }
+
+  .project-header {
+    background: var(--ink);
+    color: var(--bg);
+    padding: 1rem 1.5rem;
+    display: flex; justify-content: space-between; align-items: center;
+  }
+
+  .project-type {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--accent);
+  }
+
+  .project-body {
+    padding: 2rem;
+  }
+
+  .project-title {
+    font-family: 'Syne', sans-serif;
+    font-weight: 700;
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    line-height: 1.2;
+    margin-bottom: 1rem;
+  }
+
+  .project-desc {
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    line-height: 1.7;
+  }
+
+  /* ---- ACHIEVEMENTS ---- */
+  .achieve-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 1.5rem;
+  }
+
+  .achieve-card {
+    border: 3px solid var(--ink);
+    padding: 2.5rem;
+    position: relative;
+    transition: all 0.3s ease;
+  }
+
+  .achieve-card:hover {
+    background: var(--ink);
+    color: var(--bg);
+  }
+
+  .achieve-card:hover .achieve-num { color: var(--accent); }
+
+  .achieve-num {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 3rem;
+    color: var(--border-light);
+    line-height: 1;
+    margin-bottom: 1rem;
+    transition: color 0.3s ease;
+  }
+
+  .achieve-text {
+    font-size: 1rem;
+    line-height: 1.6;
+  }
+
+  /* ---- CERTIFICATIONS ---- */
+  .cert-list {
+    display: grid;
+    gap: 0;
+  }
+
+  .cert-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 1.8rem 0;
+    border-bottom: 1px solid var(--border-light);
+    transition: all 0.2s ease;
+  }
+
+  .cert-row:first-child { border-top: 1px solid var(--border-light); }
+
+  .cert-row:hover {
+    padding-left: 1rem;
+  }
+
+  .cert-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    text-transform: uppercase;
+  }
+
+  .cert-issuer {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.7rem;
+    color: var(--ink-muted);
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+  }
+
+  .cert-badge {
+    width: 12px; height: 12px;
+    background: var(--accent);
+    border-radius: 50%;
+    flex-shrink: 0;
+    margin-left: 2rem;
+  }
+
+  /* ---- LANGUAGES ---- */
+  .lang-grid {
+    display: flex;
+    gap: 0;
+  }
+
+  .lang-cell {
+    flex: 1;
+    padding: 3rem 2rem;
+    border: 3px solid var(--ink);
+    margin-left: -3px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .lang-cell:first-child { margin-left: 0; }
+
+  .lang-cell:hover {
+    background: var(--accent);
+    color: var(--white);
+    border-color: var(--accent);
+  }
+
+  .lang-cell:hover .lang-level { color: var(--white); }
+
+  .lang-name {
+    font-family: 'Syne', sans-serif;
+    font-weight: 800;
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    margin-bottom: 0.5rem;
+  }
+
+  .lang-level {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    transition: color 0.3s ease;
+  }
+
+  /* ---- CONTACT / FOOTER ---- */
+  .contact-section {
+    background: var(--ink);
+    color: var(--bg);
+    border-bottom: none;
+  }
+
+  .contact-section .section-num { color: #3d3830; }
+
+  .contact-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 0;
+  }
+
+  .contact-cell {
+    padding: 3rem 2rem;
+    border: 1px solid #3d3830;
+    margin: -0.5px;
+    text-align: center;
+    transition: all 0.3s ease;
+  }
+
+  .contact-cell:hover {
+    background: var(--accent);
+    border-color: var(--accent);
+  }
+
+  .contact-label {
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    color: var(--ink-muted);
+    margin-bottom: 0.8rem;
+  }
+
+  .contact-cell:hover .contact-label { color: rgba(255,255,255,0.7); }
+
+  .contact-value {
+    font-family: 'Syne', sans-serif;
+    font-weight: 600;
+    font-size: 1rem;
+    color: var(--bg);
+  }
+
+  .contact-cell:hover .contact-value { color: var(--white); }
+  .contact-cell:hover a { color: var(--white); }
+
+  footer {
+    background: var(--ink);
+    color: var(--ink-muted);
+    text-align: center;
+    padding: 2rem;
+    font-family: 'Space Mono', monospace;
+    font-size: 0.6rem;
+    text-transform: uppercase;
+    letter-spacing: 0.2em;
+    border-top: 1px solid #3d3830;
+  }
+
+  /* ---- ANIMATIONS ---- */
+  @keyframes slideIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to   { opacity: 1; transform: translateY(0); }
+  }
+
+  .reveal {
+    opacity: 0;
+    transform: translateY(25px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+  }
+
+  .reveal.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  /* ---- RESPONSIVE ---- */
+  @media (max-width: 900px) {
+    nav { padding: 0.8rem 1.5rem; }
+    .nav-links { gap: 0.2rem; }
+    .nav-links a { font-size: 0.55rem; padding: 0.3rem 0.5rem; }
+
+    .hero {
+      grid-template-columns: 1fr;
+    }
+    .hero-left {
+      border-right: none;
+      border-bottom: 3px solid var(--ink);
+      padding: 4rem 1.5rem 3rem;
+    }
+    .hero-right { padding: 3rem 1.5rem; }
+
+    .section-inner { padding: 3rem 1.5rem; }
+
+    .edu-row { grid-template-columns: 60px 1fr 80px; }
+    .edu-school { display: none; }
+
+    .exp-block { grid-template-columns: 1fr; }
+    .exp-sidebar { padding: 1.5rem; }
+
+    .skills-wrap { grid-template-columns: 1fr 1fr; }
+
+    .projects-grid { grid-template-columns: 1fr; }
+    .project-card:first-child { grid-column: auto; }
+
+    .achieve-grid { grid-template-columns: 1fr; }
+
+    .lang-grid { flex-direction: column; }
+    .lang-cell { margin-left: 0; margin-top: -3px; }
+    .lang-cell:first-child { margin-top: 0; }
+
+    .contact-grid { grid-template-columns: 1fr; }
+  }
+
+  @media (max-width: 500px) {
+    .skills-wrap { grid-template-columns: 1fr; }
+    .section-num { font-size: 2.5rem; }
+  }
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">Piyush<span>G</span></div>
+  <ul class="nav-links">
+    <li><a href="#about">About</a></li>
+    <li><a href="#edu">Edu</a></li>
+    <li><a href="#exp">Work</a></li>
+    <li><a href="#skills">Skills</a></li>
+    <li><a href="#projects">Projects</a></li>
+    <li><a href="#contact">Contact</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-left">
+    <div class="hero-label">Mass Communication &amp; Journalism — Kolkata, India</div>
+    <h1 class="hero-name">
+      <span class="first">Piyush</span>
+      <span class="last">Ghosh</span>
+    </h1>
+  </div>
+  <div class="hero-right">
+    <p class="hero-objective">Motivated and articulate postgraduate with a passion for storytelling, digital media, and public engagement. Seeking to apply creativity and communication skills in a dynamic media organisation focused on impactful and ethical journalism.</p>
+    <div class="hero-contact-bar">
+      <div class="hero-contact-item">
+        Email
+        <strong>piyushghosh434@gmail.com</strong>
+      </div>
+      <div class="hero-contact-item">
+        Phone
+        <strong>+91-8582872049</strong>
+      </div>
+      <div class="hero-contact-item">
+        Location
+        <strong>Kolkata, West Bengal</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- MARQUEE -->
+<div class="marquee-wrap">
+  <div class="marquee-track">
+    <span class="marquee-item">News Writing</span>
+    <span class="marquee-item">Digital Content</span>
+    <span class="marquee-item">Video Editing</span>
+    <span class="marquee-item">Social Media</span>
+    <span class="marquee-item">Public Relations</span>
+    <span class="marquee-item">Research</span>
+    <span class="marquee-item">SEO</span>
+    <span class="marquee-item">Storytelling</span>
+    <span class="marquee-item">News Writing</span>
+    <span class="marquee-item">Digital Content</span>
+    <span class="marquee-item">Video Editing</span>
+    <span class="marquee-item">Social Media</span>
+    <span class="marquee-item">Public Relations</span>
+    <span class="marquee-item">Research</span>
+    <span class="marquee-item">SEO</span>
+    <span class="marquee-item">Storytelling</span>
+  </div>
+</div>
+
+<!-- ABOUT -->
+<section id="about">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-num">01</div>
+      <h2 class="section-title">About <em>Me</em></h2>
+    </div>
+    <div style="max-width:700px;">
+      <p style="font-size:1.1rem; color:var(--ink-soft); line-height:1.9;">
+        Motivated and articulate Mass Communication and Journalism postgraduate with a passion for storytelling, digital media, and public engagement. Adept at content creation, writing, and multimedia production. Seeking to apply creativity and communication skills in a dynamic media organisation focused on impactful and ethical journalism.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- EDUCATION -->
+<section id="edu">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-num">02</div>
+      <h2 class="section-title">Education</h2>
+    </div>
+    <div class="edu-list">
+      <div class="edu-row">
+        <div class="edu-dot">MA</div>
+        <div class="edu-degree">MA — Mass Communication &amp; Journalism</div>
+        <div class="edu-school">Jadavpur University, Kolkata</div>
+        <div class="edu-year">Exp. 2026</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-dot">BA</div>
+        <div class="edu-degree">BA — Mass Communication &amp; Journalism</div>
+        <div class="edu-school">Amity University, Kolkata</div>
+        <div class="edu-year">2022</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-dot">XII</div>
+        <div class="edu-degree">Higher Secondary Education</div>
+        <div class="edu-school">Kalyani Central Model School</div>
+        <div class="edu-year">2019</div>
+      </div>
+      <div class="edu-row">
+        <div class="edu-dot">X</div>
+        <div class="edu-degree">Secondary Education</div>
+        <div class="edu-school">Kalyani Central Model School</div>
+        <div class="edu-year">2017</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- EXPERIENCE -->
+<section id="exp">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-num">03</div>
+      <h2 class="section-title">Experience</h2>
+    </div>
+    <div class="exp-block">
+      <div class="exp-sidebar">
+        <div>
+          <div class="exp-role-label">Role</div>
+          <div class="exp-role">Content Writing Intern</div>
+          <div class="exp-company">Kaccha Chitta Media — Kolkata</div>
+        </div>
+        <div class="exp-date-block">
+          June 2024 — September 2024
+        </div>
+      </div>
+      <div class="exp-content">
+        <ul class="exp-list">
+          <li>Researched and wrote engaging digital content for online publication</li>
+          <li>Assisted editorial team in developing creative story ideas</li>
+          <li>Proofread and optimised articles for readability and SEO</li>
+          <li>Contributed to brand engagement through compelling narratives and social posts</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SKILLS -->
+<section id="skills">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-num">04</div>
+      <h2 class="section-title">Skills</h2>
+    </div>
+    <div class="skills-wrap">
+      <div class="skill-cell"><div class="skill-id">01</div><div class="skill-text">News &amp; Feature Writing</div></div>
+      <div class="skill-cell"><div class="skill-id">02</div><div class="skill-text">Digital Content Creation</div></div>
+      <div class="skill-cell"><div class="skill-id">03</div><div class="skill-text">Research &amp; Interviewing</div></div>
+      <div class="skill-cell"><div class="skill-id">04</div><div class="skill-text">Video Editing</div></div>
+      <div class="skill-cell"><div class="skill-id">05</div><div class="skill-text">Social Media Management</div></div>
+      <div class="skill-cell"><div class="skill-id">06</div><div class="skill-text">Public Relations</div></div>
+      <div class="skill-cell"><div class="skill-id">07</div><div class="skill-text">Editing &amp; Proofreading</div></div>
+      <div class="skill-cell"><div class="skill-id">08</div><div class="skill-text">MS Office &amp; Google Workspace</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- PROJECTS -->
+<section id="projects">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-num">05</div>
+      <h2 class="section-title">Projects</h2>
+    </div>
+    <div class="projects-grid">
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type">Short Documentary</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Social Media Influence on Youth Communication</div>
+          <div class="project-desc">Explored how social media platforms shape the communication patterns and interpersonal dynamics among today's youth.</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type">Research Paper</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">The Decline of Traditional Broadcast Media in the Age of Streaming</div>
+          <div class="project-desc">A cultural and economic analysis of the evolution of journalism in the digital era.</div>
+        </div>
+      </div>
+      <div class="project-card">
+        <div class="project-header">
+          <span class="project-type">Media Campaign</span>
+        </div>
+        <div class="project-body">
+          <div class="project-title">Communication Strategy Design</div>
+          <div class="project-desc">Designed a comprehensive communication strategy for a brand/event as part of academic coursework.</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ACHIEVEMENTS -->
+<section>
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-num">06</div>
+      <h2 class="section-title">Achievements</h2>
+    </div>
+    <div class="achieve-grid">
+      <div class="achieve-card">
+        <div class="achieve-num">I</div>
+        <div class="achieve-text">Recognised for creative writing contributions in student media publications</div>
+      </div>
+      <div class="achieve-card">
+        <div class="achieve-num">II</div>
+        <div class="achieve-text">Represented Jadavpur University in inter-university media fest</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CERTIFICATIONS -->
+<section>
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-num">07</div>
+      <h2 class="section-title">Certifications</h2>
+    </div>
+    <div class="cert-list">
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Certificate in Digital Journalism</div>
+          <div class="cert-issuer">Jadavpur University</div>
+        </div>
+        <div class="cert-badge"></div>
+      </div>
+      <div class="cert-row">
+        <div>
+          <div class="cert-name">Certificate in Public Relations &amp; Media Strategy</div>
+          <div class="cert-issuer">Jadavpur University</div>
+        </div>
+        <div class="cert-badge"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- LANGUAGES -->
+<section>
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-num">08</div>
+      <h2 class="section-title">Languages</h2>
+    </div>
+    <div class="lang-grid">
+      <div class="lang-cell">
+        <div class="lang-name">English</div>
+        <div class="lang-level">Fluent</div>
+      </div>
+      <div class="lang-cell">
+        <div class="lang-name">Hindi</div>
+        <div class="lang-level">Fluent</div>
+      </div>
+      <div class="lang-cell">
+        <div class="lang-name">Bengali</div>
+        <div class="lang-level">Fluent</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact" class="contact-section">
+  <div class="section-inner reveal">
+    <div class="section-head">
+      <div class="section-num">09</div>
+      <h2 class="section-title" style="color:var(--bg);">Get in <em>Touch</em></h2>
+    </div>
+    <div class="contact-grid">
+      <div class="contact-cell">
+        <div class="contact-label">Email</div>
+        <div class="contact-value"><a href="mailto:piyushghosh434@gmail.com">piyushghosh434@gmail.com</a></div>
+      </div>
+      <div class="contact-cell">
+        <div class="contact-label">Phone</div>
+        <div class="contact-value"><a href="tel:+918582872049" style="color:var(--bg);">+91-8582872049</a></div>
+      </div>
+      <div class="contact-cell">
+        <div class="contact-label">Location</div>
+        <div class="contact-value">Kolkata, West Bengal, India</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  &copy; 2026 Piyush Ghosh &mdash; References available upon request
+</footer>
+
+<script>
+  const reveals = document.querySelectorAll('.reveal');
+  const obs = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.12 });
+  reveals.forEach(el => obs.observe(el));
+</script>
+
+</body>
+</html>
